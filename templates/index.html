@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤟 Sign Language Translator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+  <div class="bg-blob blob3"></div>
+
+  <!-- ========== PAGE 1: Upload ========== -->
+  <div id="page1" class="page active">
+    <div class="app-wrapper">
+
+      <header class="app-header">
+        <div class="header-icon">🤟</div>
+        <div>
+          <h1 class="app-title">Sign Language Translator</h1>
+          <p class="app-subtitle">Real-time gesture recognition & speech output</p>
+        </div>
+      </header>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchPage('page1', this)">
+          📂 Upload
+        </button>
+        <button class="tab-btn" onclick="switchPage('page2', this)">
+          🎥 Live Webcam
+        </button>
+      </div>
+
+      <div class="upload-card">
+        <div id="dropZone" class="drop-zone">
+          <div class="drop-icon">📁</div>
+          <p class="drop-title">Drag & Drop or Click to Upload</p>
+          <p class="drop-sub">Supports images and videos</p>
+          <input type="file" id="mediaUpload" accept="video/*, image/*" hidden>
+        </div>
+
+        <div id="preview" class="preview-area"></div>
+
+        <button id="predictBtn" class="btn btn-primary">✨ Translate</button>
+        <div id="loader" class="loader hidden">⏳ Processing...</div>
+
+        <div class="result-card">
+          <div class="result-label">Predicted Text</div>
+          <div id="result" class="result-text">---</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== PAGE 2: Live Webcam ========== -->
+  <div id="page2" class="page">
+    <div class="app-wrapper app-wrapper--wide">
+
+      <header class="app-header">
+        <div class="header-icon">🤟</div>
+        <div>
+          <h1 class="app-title">Sign Language Translator</h1>
+          <p class="app-subtitle">Real-time gesture recognition & speech output</p>
+        </div>
+      </header>
+
+      <div class="tabs">
+        <button class="tab-btn" onclick="switchPage('page1', this)">
+          📂 Upload
+        </button>
+        <button class="tab-btn active" onclick="switchPage('page2', this)">
+          🎥 Live Webcam
+        </button>
+      </div>
+
+      <div class="live-layout">
+
+        <!-- Left: Webcam -->
+        <div class="webcam-panel">
+          <div class="webcam-frame">
+            <img id="webcam" alt="Live webcam feed">
+            <div class="webcam-badge">● LIVE</div>
+          </div>
+          <button onclick="stopWebcam()" class="btn btn-danger">⏹ Stop Webcam</button>
+        </div>
+
+        <!-- Right: Controls -->
+        <div class="controls-panel">
+
+          <div class="info-card">
+            <div class="info-label">👁 Current Gesture</div>
+            <div id="resultLive" class="gesture-display">---</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">📝 Sentence</div>
+            <div id="sentenceBox" class="sentence-display">---</div>
+          </div>
+
+          <div class="sentence-btns">
+            <button onclick="deleteLast()" class="btn btn-outline">⌫ Delete</button>
+            <button onclick="clearSentence()" class="btn btn-outline">🗑 Clear</button>
+            <button onclick="speakSentence()" class="btn btn-primary">🔊 Speak</button>
+          </div>
+
+          <div class="tips-card">
+            <div class="tip">💡 Hold gesture <b>2 sec</b> to add letter</div>
+            <div class="tip">✋ No hand for <b>3 sec</b> = word space</div>
+            <div class="tip">🔊 Click <b>Speak</b> to hear the sentence</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

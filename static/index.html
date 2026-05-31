@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Sign Language Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Sign Language Converter</h1>
+    <p>Upload media or use live webcam</p>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button id="uploadTab" class="active">Upload</button>
+      <button id="liveTab">Live</button>
+    </div>
+
+    <!-- Upload Section -->
+    <div id="uploadSection" class="section">
+      <div id="dropZone">Click or drag file here</div>
+      <input type="file" id="mediaUpload" accept="image/*,video/*">
+      <div id="preview"></div>
+      <button id="predictBtn">Predict</button>
+    </div>
+
+    <!-- Live Section -->
+    <div id="liveSection" class="section hidden">
+      <video id="webcam" autoplay playsinline></video>
+      <button onclick="stopWebcam()">Stop Webcam</button>
+    </div>
+
+    <!-- Loader & Result -->
+    <div id="loader" class="hidden">Loading...</div>
+    <div class="output">
+      <h3>Prediction:</h3>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
